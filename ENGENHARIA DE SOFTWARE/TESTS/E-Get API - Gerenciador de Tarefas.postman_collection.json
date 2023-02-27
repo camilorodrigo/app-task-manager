@@ -1,0 +1,698 @@
+{
+	"info": {
+		"_postman_id": "f4e119ed-3435-4013-9f2f-146983e4422b",
+		"name": "E-Get API | Gerenciador de Tarefas",
+		"description": "| POST api/admin/login | Test Case - Login usuario |\n| --- | --- |\n| GET api/admin/logout | Test Case - Logout usuario |\n| POST api/admin/usuarios/cadastrar | Cadastro de novo usuário |\n| GET api/admin/usuarios/me | Visualizar Usuário Logado |\n| POST api/admin/tarefas/cadastrar | Test Case - Cadastrar tarefa |\n| PUT api/admin/tarefas/editar/{id} | Test Case - Edição de tarefa |\n| GET  api/admin/tarefas/{id} | Test Case - Buscar Uma Determinada Tarefa |\n| GET  api/admin/tarefas | Test Case - Listar Todas as Tarefas|\n| DEL api/admin/tarefas/deletar/{id} | Test Case - Excluir uma tarefa |\n| POST api/admin/atribuicoes/cadastrar | Test Case - Delegar Tarefas |\n| GET api/admin/atribuicoes/listar-atribuicoes | Test Case - Lista tanto por Usuário quanto por Status ou se não passar um parâmetro traz a listagem completa |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Test Case - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "rcamilo@e-get.com.br",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Teste de Login\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Case - Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/logout",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Teste de Logout\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+					},
+					"response": []
+				}
+			],
+			"description": "Centralização de requsições pertinente a Login"
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Cadastrar Usuario",
+					"item": [
+						{
+							"name": "Test Case - Ver Usuario Logado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url_base}}/me",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"me"
+									]
+								},
+								"description": "Teste para ratificar se o usuário realmente está logado e confirmar a identidade de quem logou\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						},
+						{
+							"name": "Test Case - Cadastrar Usuário",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nome",
+											"value": "RODRIGO CAMILO",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "rcamilo@e-get.com.br",
+											"type": "default"
+										},
+										{
+											"key": "senha",
+											"value": "123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_base}}/usuarios/cadastrar",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"usuarios",
+										"cadastrar"
+									]
+								},
+								"description": "Teste para cadastro de um novo usuário\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						}
+					],
+					"description": "Cadastro de novo cliente.",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log(pm.info.requestName)"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"description": "Centralização de requsições pertinente Usuários"
+		},
+		{
+			"name": "Tarefas",
+			"item": [
+				{
+					"name": "Cadastrar Tarefa",
+					"item": [
+						{
+							"name": "Test Case - Cadastrar Tarefa",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "titulo",
+											"value": "REGISTRAR USUÁRIO",
+											"type": "default"
+										},
+										{
+											"key": "descricao",
+											"value": "REGISTRAR USUÁRIO",
+											"type": "default"
+										},
+										{
+											"key": "data_inicio",
+											"value": "24/02/2023",
+											"type": "default"
+										},
+										{
+											"key": "data_fim",
+											"value": "27/02/2023",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_base}}/tarefas/cadastrar",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"tarefas",
+										"cadastrar"
+									]
+								},
+								"description": "Teste para cadastrar uma tarefa \n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						}
+					],
+					"description": "Cadastro de novo cliente.",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log(pm.info.requestName)"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Editar Tarefa",
+					"item": [
+						{
+							"name": "Test Case - Editar Tarefa",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "titulo",
+											"value": "REGISTRAR USUÁRIO SISTEMA E-GET",
+											"type": "default"
+										},
+										{
+											"key": "descricao",
+											"value": "REGISTRAR USUÁRIO SISTEMA E-GET",
+											"type": "default"
+										},
+										{
+											"key": "data_inicio",
+											"value": "14/02/2023",
+											"type": "text"
+										},
+										{
+											"key": "data_fim",
+											"value": "27/02/2023",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_base}}/tarefas/editar/{{id}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"tarefas",
+										"editar",
+										"{{id}}"
+									]
+								},
+								"description": "Test Case para editar dados de uma tarefa específica \n  \n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						}
+					],
+					"description": "Edição",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log(pm.info.requestName)"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Visualizar Tarefas",
+					"item": [
+						{
+							"name": "Test Case - Listar Tarefas",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Apontando a ordem para o script seguir - run\r",
+											"postman.setNextRequest(\"Deletar Cliente\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url_base}}/tarefas",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"tarefas"
+									]
+								},
+								"description": "Test Case para listar todos os clientes cadastrados na base, onde o último número da placa do carro é igual ao informado.\n\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						},
+						{
+							"name": "Test Case - Buscar Uma Tarefa",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Apontando a ordem para o script seguir - run\r",
+											"postman.setNextRequest(\"Deletar Cliente\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url_base}}/tarefas/3",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"tarefas",
+										"3"
+									]
+								},
+								"description": "Test Case para listar todos os clientes cadastrados na base, onde o último número da placa do carro é igual ao informado.\n\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						}
+					],
+					"description": "Consultas pertinentes"
+				},
+				{
+					"name": "Deletar Tarefa",
+					"item": [
+						{
+							"name": "Test Case - Deletar Tarefa",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Stop na execução da ordem seguida\r",
+											"postman.setNextRequest(null);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url_base}}/tarefas/deletar/{{id}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"tarefas",
+										"deletar",
+										"{{id}}"
+									]
+								},
+								"description": "Test Case para excluir um cliente específico via id  \n\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+							},
+							"response": []
+						}
+					],
+					"description": "Remoção"
+				}
+			],
+			"description": "Centralização de requsições pertinente a tarefas"
+		},
+		{
+			"name": "Gerenciar Atribuições",
+			"item": [
+				{
+					"name": "Test Case - Atribuir Tarefa",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "codigo_usuario",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "codigo_tarefa",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/atribuicoes/cadastrar",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"atribuicoes",
+								"cadastrar"
+							]
+						},
+						"description": "Teste para delegar uma tarefa\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Case - Listar Todas Atribuições",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/atribuicoes/listar-atribuicoes/{{cod_user}} / {{status_task}}",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"atribuicoes",
+								"listar-atribuicoes",
+								"{{cod_user}} ",
+								" {{status_task}}"
+							]
+						},
+						"description": "Teste para listar todas as tarefas atribuiídas\n**Resultados esperados:**\n\n*   Response code: **200**\n*   String **'Sucesso'** no corpo do Response\n*   Tempo de resposta **< 3000 ms**"
+					},
+					"response": []
+				}
+			],
+			"description": "Centralização de requsições pertinente a gestão e delegação de tarefas",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(pm.info.requestName)"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"pm.test(\"Retornou o Sucesso na requisição\", function () {",
+					"    pm.expect(pm.response.text()).to.include(\"Sucesso\");",
+					"",
+					"});",
+					"pm.test(\"Response time is less than 3 segundos\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_base",
+			"value": "http://app-task-manager/api/admin",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcHAtdGFzay1tYW5hZ2VyXC9hcGlcL2FkbWluXC9sb2dpbiIsImlhdCI6MTY3NzUxMTUzMywiZXhwIjoxNjc3NTE1MTMzLCJuYmYiOjE2Nzc1MTE1MzMsImp0aSI6IlhJbWdRTTV5RUNqWWhGc2oiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJjb2RfdXNlciI6MSwiZW1haWwiOiJyY2FtaWxvQGUtZ2V0LmNvbS5iciJ9.vWJ_MxixsOoRW6GEWjTYzmrJnkXtRhckYKY3hNgmT0A",
+			"type": "default"
+		},
+		{
+			"key": "id",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "cod_user",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "status_task",
+			"value": "2",
+			"type": "default"
+		}
+	]
+}
