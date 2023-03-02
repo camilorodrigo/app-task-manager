@@ -11,27 +11,18 @@ class GlobalFunctions {
     
     /**
      *
-     * Função: Removendo ponto, traço e barra de CPF ou CNPJ  
-     * @return string formatada 
+     * Função: Verifica se um determinado valor é inteiro
+     * @return boolean  
      *
      * */
-    public static function clearValue($value)
+    public static function checkIfIsInteger($number): bool
     {
-        
-        $value = trim($value);
-        $value = str_replace(".", "", $value);
-        $value = str_replace(",", "", $value);
-        $value = str_replace("/", "", $value);
-        $value = str_replace("(", "", $value);
-        $value = str_replace(")", "", $value);
-        $value = str_replace("[", "", $value);
-        $value = str_replace("]", "", $value);
-        $value = str_replace("{", "", $value);
-        $value = str_replace("}", "", $value);
-        $value = str_replace(" ", "", $value);
-        return $value;
+        if (is_int($number)) {
+            return true;
+        }
+
+        return false;
     }
-    
     /**
      *
      * Função: Converte texto para letras maiúsculas

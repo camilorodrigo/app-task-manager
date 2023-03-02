@@ -40,4 +40,12 @@ class AssignmentRepository extends AbstractRepository implements AssignmentRepos
         return $busca;
     }
 
+     public function findOneAssignmentByIdTask(int $id)
+    {    
+        $busca = $this->model::where('cod_task', '=', $id)
+                             ->first(); 
+                       
+        return $busca;
+    }
+
 }

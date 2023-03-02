@@ -53,6 +53,18 @@ class CreateAssignmentService
       * */
     public function createAssignment(array $attributes): object {
 
+        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_tarefa']) == false) {
+            throw new \Exception(
+                    'Erro: Código inválido!'
+            );
+        }
+
+        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_usuario']) == false) {
+            throw new \Exception(
+                    'Erro: Código inválido!'
+            );
+        }
+
          // Serviço para verificar os dados  
         $objTask = $this->checkDataService->checkTaskExists($attributes['codigo_tarefa']);        
         if(collect($objTask)->isEmpty()){            

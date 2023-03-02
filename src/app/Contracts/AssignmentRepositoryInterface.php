@@ -14,4 +14,5 @@ interface AssignmentRepositoryInterface
     public function update(array $attributes, int $id);
     public function delete(int $id);
     public function getAllAssignmentsWithUserWithTask($cod_user = null, $status_task = null);
+    public function findOneAssignmentByIdTask(int $id);
 }

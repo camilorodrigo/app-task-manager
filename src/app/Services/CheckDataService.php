@@ -30,7 +30,7 @@ class CheckDataService
      * @return object
      *
      * */
-    public function checkTaskExists(int $id)
+    public function checkTaskExists(int $id):object
     {
         $this->taskRepository = new TaskRepository();
         $busca = $this->taskRepository->findOneTaskById($id);        
@@ -45,7 +45,7 @@ class CheckDataService
      * @return object
      *
      * */
-    public function checkUserExists(int $id)
+    public function checkUserExists(int $id):object
     {
         $this->userRepository = new UserRepository();
         $busca = $this->userRepository->find($id);        
@@ -60,7 +60,7 @@ class CheckDataService
      * @return object
      *
      * */
-    public function checkThereIsAssignmentInTask(int $cod_task)
+    public function checkThereIsAssignmentInTask(int $cod_task):object
     {
         $this->assignmentRepository = new AssignmentRepository();
         $busca = $this->assignmentRepository->findOneAssignmentByIdTask($cod_task);        
