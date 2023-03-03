@@ -53,13 +53,13 @@ class CreateAssignmentService
       * */
     public function createAssignment(array $attributes): object {
 
-        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_tarefa']) == false) {
+        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_tarefa']) === false) {
             throw new \Exception(
                     'Erro: Código inválido!'
             );
         }
 
-        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_usuario']) == false) {
+        if (GlobalFunctions::checkIfIsInteger($attributes['codigo_usuario']) === false) {
             throw new \Exception(
                     'Erro: Código inválido!'
             );

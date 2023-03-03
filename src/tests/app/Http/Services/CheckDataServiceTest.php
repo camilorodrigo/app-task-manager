@@ -34,7 +34,7 @@ class CheckDataServiceTest extends TestCase
     # php artisan test --filter=CheckDataServiceTest::testCheckIfEmailAlreadyExists
     public function testCheckIfEmailAlreadyExists()
     {
-        $email = "rcamilo@e-get.com.br";
+        $email = "rodrigo@gmail.com";
         $service = new CheckDataService();
         $total = $service->checkIfEmailAlreadyExists($email);
         dump($total);
@@ -44,7 +44,7 @@ class CheckDataServiceTest extends TestCase
     # php artisan test --filter=CheckDataServiceTest::testCheckIfTitleTaksAlreadyExists
     public function testCheckIfTitleTaksAlreadyExists()
     {
-        $title = "REGISTRAR USUÁRIO SISTEMA E-GET";
+        $title = "REGISTRAR USUÁRIO SISTEMA";
         $service = new CheckDataService();
         $total = $service->checkIfTitleTaksAlreadyExists($title);
         dump($total);

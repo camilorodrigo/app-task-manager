@@ -104,7 +104,8 @@ class UpdateTaskService
         } else {
             return (object) array(
                 'mensagem' => 'Sucesso',
-                'resposta' => true
+                'resposta' => true,
+                'id' => $id
             );
         }
     }
