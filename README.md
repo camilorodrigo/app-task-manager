@@ -129,11 +129,6 @@ Para que o teste abaixo em UpdateTaskServiceTest venha funcionar será necessár
 
 php artisan test --filter=UpdateTaskServiceTest::testUpdateTask
 ```
-
-## 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
-
 ## 🛠️ Construído com
 
 Mencione as ferramentas que você usou para criar seu projeto
